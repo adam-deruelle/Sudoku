@@ -33,7 +33,11 @@ constante entier TAILLE := 81;
 constante entier RECO := -1; // si case est -1 alors recommencer
 constante entier QUIT := 0;
 constante chaine CHEMIN[10] := "./grilles";
-constante entier REJOUER = 1;
+constante entier REJOUER := 1;
+constante caractère LETTRE_MIN := 'A';
+constante caractère LETTRE_MAX := 'I';
+constante entier INDICE_MIN := 1;
+constante entier INDICE_MAX := 9;
 
 début
     // Variables
