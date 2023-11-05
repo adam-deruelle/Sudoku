@@ -256,6 +256,10 @@ Verifie si le chiffre que l'utilisateur veut placer est correct
 **Paramètres** :  
 _chiffreUtil_ (Entrée): entier, le chiffre de l'utilisateur
 
+Lien vers la maquette
+=====================
+[Lien Maquette Prezi](https://prezi.com/view/H2LuAfey8AhGfGvZjIYM/)
+
 **Resultat** :  
 booléen, indique si le chiffre est correct
 
