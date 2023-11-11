@@ -1,13 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int possible(int grille[9][9], int ligne, int colonne, int valeur);
-void chargerGrille(int grille[9][9]);
-void afficherGrille(int grille[9][9]);
+typedef struct{
+
+}tGrille;
+
+const int TAILLE = 0;
+
+int possible(tGrille grille, int ligne, int colonne, int valeur);
+void chargerGrille(tGrille g);
+void afficherGrille(tGrille grille);
 void saisir(int *valeur);
 
 int main() {
-    int grille1[9][9];
+    tGrille grille1;
     int numLigne, numColonne, valeur;
 
     chargerGrille(grille1);
@@ -37,4 +43,30 @@ int main() {
     printf("Grille pleine, fin de partie\n");
 
     return EXIT_SUCCESS;
+}
+
+int possible(tGrille grille, int ligne, int colonne, int valeur){
+
+}
+
+void chargerGrille(tGrille g){
+    char nomFichier[30];
+    FILE * f;
+    printf("Nom du fichier ? ");
+    scanf("%s", nomFichier);
+    f = fopen(nomFichier, "rb");
+    if (f==NULL){
+        printf("\n ERREUR sur le fichier %s\n", nomFichier);
+    } else {
+        fread(g, sizeof(int), TAILLE*TAILLE, f);
+    }
+    fclose(f);
+}
+
+void afficherGrille(tGrille grille){
+
+}
+
+void saisir(int *valeur){
+
 }
