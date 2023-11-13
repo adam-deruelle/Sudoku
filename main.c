@@ -32,7 +32,7 @@
 */
 typedef int tGrille[NB_C][NB_L];
 
-int possible(tGrille grille, int ligne, int colonne, int valeur);
+bool possible(tGrille grille, int ligne, int colonne, int valeur);
 void chargerGrille(tGrille g);
 void afficherGrille(tGrille grille);
 void saisir(int *valeur);
@@ -88,39 +88,50 @@ int main() {
 * Cette fonction vérifie si une valeur peut être ajoutée dans une case particulière de la grille,
 * c’est à-dire si cela respecte les règles du sudoku.
 */
-int possible(tGrille grille, int ligne, int colonne, int valeur){
-    int c; //Carré
+bool possible(tGrille grille, int ligne, int colonne, int valeur){
+    int c; //Colonne
     int l; //Ligne
     int res;
-    res = -1;
+    res = true;
     c = 0;
+    l = 0;
     // la valeur n’est pas déjà présente sur la même ligne que la case
-    while ((c < NB_C) && (res == -1)){
-        if (grille[c][ligne] == valeur){
-            res == 1;
+    while ((c < NB_C) && (res)){
+        if (grille[ligne][c] == valeur){
+            res = false;
+            printf("Passe Test 1: res = %d\n", res);
         }
+        c++;
     }
-
+    
     // la valeur n’est pas déjà présente sur la même colonne que la case
-    while ((c < NB_C) && (res == -1)){
-        if (grille[colonne][l] == valeur){
-            res == 1;
+    c = 0;
+    l = 0;
+    while ((l < NB_C) && (res)){
+        if (grille[l][colonne] == valeur){
+            res = false;
+            printf("Passe Test 2: res = %d\n", res);
         }
+        l++;
     }
     
 
     // la valeur n’est pas déjà présente dans le même bloc que la case
-    if (res != -1){
-        while ((c < NB_C) && (res == -1)){
-            l = 0;
-            while ((l < (NB_L/3)) && (res == -1)){
-                if (grille[c][l] == valeur){
-                    res == 1;
-                }
-                l++;
+    c = 0;
+    l = 0;
+    int ligneDebut = (ligne / 3) * 3;
+    int colonneDebut = (colonne / 3) * 3;
+    printf("ligneDebut: %d |colonneDebut: %d\n", ligneDebut, colonneDebut);
+    while ((l < NB_L/3) && (res)){
+        c = 0;
+        while ((c < (NB_C/3)) && (res)){
+            if (grille[ligneDebut + l][colonneDebut + c] == valeur){
+                res = false;
+                printf("Passe Test 3: res = %d\n", res);
             }
             c++;
         }
+        l++;
     }
 
     return res;
