@@ -9,23 +9,28 @@
 #include <stdbool.h>
 
 /**
-* \def TAILLE
-* \brief Taille d’un tableau.
+* \def NB_C
+* \brief Nombre de carré.
 *
-* Taille de la grille du jeu
+* Nombre de carré présent dans la grille du sudoku
 */
-#define TAILLE 81
+#define NB_C 9
+/**
+* \def NB_L
+* \brief Nombre de Ligne.
+*
+* Nombre de ligne présent dans un carré de la grille du sudoku
+*/
+#define NB_L 9
 
 
 /**
-* \struct tGrille
+* \typedef tGrille
 * \brief Structure d'un tableau double
 *
 * Contient la grille du jeu
 */
-typedef struct{
-
-}tGrille;
+typedef int tGrille[NB_C][NB_L];
 
 int possible(tGrille grille, int ligne, int colonne, int valeur);
 void chargerGrille(tGrille g);
@@ -84,7 +89,34 @@ int main() {
 * c’est à-dire si cela respecte les règles du sudoku.
 */
 int possible(tGrille grille, int ligne, int colonne, int valeur){
+    int c; //Carré
+    int l; //Ligne
+    int res;
+    res = -1;
+    c = 0;
+    // la valeur n’est pas déjà présente sur la même ligne que la case
+    while ((c < NB_C) && (res == -1)){
+        l = 0;
+        while ((l < (NB_L/3)) && (res == -1)){
+            if (grille[c][l] == valeur){
+                res == 1;
+            }
+            l++;
+        }
+        c++;
+    }
 
+    // la valeur n’est pas déjà présente sur la même colonne que la case
+    if (res != -1){
+        
+    }
+
+    // la valeur n’est pas déjà présente dans le même bloc que la case
+    if (res != -1){
+        
+    }
+
+    return res;
 }
 
 /**
@@ -104,7 +136,7 @@ void chargerGrille(tGrille g){
     if (f==NULL){
         printf("\n ERREUR sur le fichier %s\n", nomFichier);
     } else {
-        fread(g, sizeof(int), TAILLE*TAILLE, f);
+        fread(g, sizeof(int), NB_C * NB_L, f);
     }
     fclose(f);
 }
@@ -117,7 +149,14 @@ void chargerGrille(tGrille g){
  * Une case vide sera représentée par un point.
 */
 void afficherGrille(tGrille grille){
-
+    int c; //Carré
+    int l; //Ligne
+    for (c = 0; c < NB_C; c++){
+        printf("    1 2 3   4 5 6   7 8 9");
+        for (l = 0; l < (NB_C/3); l++){
+            printf(grille[c][l]);
+        }
+    }
 }
 
 /**
