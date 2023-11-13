@@ -96,24 +96,31 @@ int possible(tGrille grille, int ligne, int colonne, int valeur){
     c = 0;
     // la valeur n’est pas déjà présente sur la même ligne que la case
     while ((c < NB_C) && (res == -1)){
-        l = 0;
-        while ((l < (NB_L/3)) && (res == -1)){
-            if (grille[c][l] == valeur){
-                res == 1;
-            }
-            l++;
+        if (grille[c][ligne] == valeur){
+            res == 1;
         }
-        c++;
     }
 
     // la valeur n’est pas déjà présente sur la même colonne que la case
-    if (res != -1){
-        
+    while ((c < NB_C) && (res == -1)){
+        if (grille[colonne][l] == valeur){
+            res == 1;
+        }
     }
+    
 
     // la valeur n’est pas déjà présente dans le même bloc que la case
     if (res != -1){
-        
+        while ((c < NB_C) && (res == -1)){
+            l = 0;
+            while ((l < (NB_L/3)) && (res == -1)){
+                if (grille[c][l] == valeur){
+                    res == 1;
+                }
+                l++;
+            }
+            c++;
+        }
     }
 
     return res;
