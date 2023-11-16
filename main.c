@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 /**
 * \def NB_C
@@ -22,6 +23,13 @@
 * Nombre de ligne présent dans un carré de la grille du sudoku
 */
 #define NB_L 9
+/**
+* \def NB_G
+* \brief Nombre de Grille.
+*
+* Nombre de grille présentes dans le fichier grilles/
+*/
+#define NB_G 10
 
 
 /**
@@ -36,6 +44,7 @@ bool possible(tGrille grille, int ligne, int colonne, int valeur);
 void chargerGrille(tGrille g);
 void afficherGrille(tGrille grille);
 void saisir(int *valeur);
+int aleaInfBorne(int borne);
 
 /**
 * \fn int main()
@@ -148,10 +157,12 @@ bool possible(tGrille grille, int ligne, int colonne, int valeur){
 */
 void chargerGrille(tGrille g){
     char nomFichier[30];
+    int x;
     FILE * f;
-    printf("Nom du fichier ? ");
-    scanf("%s", nomFichier);
-    f = fopen(nomFichier, "rb");
+    // printf("Nom du fichier ? ");
+    // scanf("%s", nomFichier);
+    x = aleaInfBorne(NB_G);
+    f = fopen("grilles/Grille1.sud", "rb");
     if (f==NULL){
         printf("\n ERREUR sur le fichier %s\n", nomFichier);
     } else {
@@ -170,8 +181,8 @@ void chargerGrille(tGrille g){
 void afficherGrille(tGrille grille){
     int c; //Carré
     int l; //Ligne
-    printf("    1 2 3   4 5 6   7 8 9\n");
-    printf("  +-------+-------+-------+\n");
+    printf("\n    1 2 3   4 5 6   7 8 9");
+    printf("\n  +-------+-------+-------+\n");
     for (c = 0; c < NB_C; c++){
         if ((c == 3) || (c == 6)){
            printf("  +-------+-------+-------+\n"); 
@@ -204,5 +215,17 @@ void afficherGrille(tGrille grille){
  *  et cet entier doit être compris entre 1 et n²
 */
 void saisir(int *valeur){
-
+    scanf("%d", valeur);
 }
+
+/**
+ * \fn int aleaInfBorne(int borne)
+ * \brief Cette procédure génère un nombre aléatoire
+ * \param borne : paramétre d'entrée qui correspond a la borne du chiffre génèré
+ *
+ * Cette donction génére un nombre aléatoire compiris entre 0 et borne
+*/
+int aleaInfBorne(int borne){
+    srand(time(NULL));
+    return rand() % borne;
+} void saisir(int *valeur)
