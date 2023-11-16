@@ -149,9 +149,9 @@ bool possible(tGrille grille, int ligne, int colonne, int valeur){
 void chargerGrille(tGrille g){
     char nomFichier[30];
     FILE * f;
-    printf("Nom du fichier ? ");
-    scanf("%s", nomFichier);
-    f = fopen(nomFichier, "rb");
+    // printf("Nom du fichier ? ");
+    // scanf("%s", nomFichier);
+    f = fopen("grilles/Grille1.sud", "rb");
     if (f==NULL){
         printf("\n ERREUR sur le fichier %s\n", nomFichier);
     } else {
@@ -170,8 +170,8 @@ void chargerGrille(tGrille g){
 void afficherGrille(tGrille grille){
     int c; //Carré
     int l; //Ligne
-    printf("    1 2 3   4 5 6   7 8 9\n");
-    printf("  +-------+-------+-------+\n");
+    printf("\n    1 2 3   4 5 6   7 8 9");
+    printf("\n  +-------+-------+-------+\n");
     for (c = 0; c < NB_C; c++){
         if ((c == 3) || (c == 6)){
            printf("  +-------+-------+-------+\n"); 
@@ -204,5 +204,5 @@ void afficherGrille(tGrille grille){
  *  et cet entier doit être compris entre 1 et n²
 */
 void saisir(int *valeur){
-
+    scanf("%d", valeur);
 }
