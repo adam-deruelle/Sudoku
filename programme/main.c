@@ -97,11 +97,11 @@ int main() {
 bool possible(tGrille grille, int ligne, int colonne, int valeur){
     int c; //Colonne
     int l; //Ligne
-    int res;
+    bool res;
     res = true;
+    // la valeur n’est pas déjà présente sur la même ligne que la case
     c = 0;
     l = 0;
-    // la valeur n’est pas déjà présente sur la même ligne que la case
     while ((c < NB_C) && (res)){
         if (grille[ligne][c] == valeur){
             res = false;
