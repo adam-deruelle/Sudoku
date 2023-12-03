@@ -69,6 +69,7 @@ int main() {
             printf("IMPOSSIBLE, la case n'est pas libre.\n");
         } else {
             // Saisie de la valeur à insérer
+            printf("Valeur à insérer ?\n");
             saisir(&valeur);
 
             // Vérification de la validité de la valeur
@@ -113,7 +114,6 @@ bool possible(tGrille grille, int ligne, int colonne, int valeur){
     // la valeur n’est pas déjà présente sur la même colonne que la case
     c = 0;
     l = 0;
-    printf("%d", colonne);
     while ((l < NB_C) && (res)){
         if (grille[l][colonne] == valeur){
             res = false;
@@ -178,18 +178,18 @@ void afficherGrille(tGrille grille){
     int l; //Ligne
     printf("\n    1 2 3   4 5 6   7 8 9\n");
     printf("  +-------+-------+-------+\n");
-    for (c = 0; c < NB_C; c++){
-        if ((c == 3) || (c == 6)){
+    for (l = 0; l < NB_L; l++){
+        if ((l== 3) || (l == 6)){
            printf("  +-------+-------+-------+\n"); 
         }
-        printf("%d |", c+1);
-        for (l = 0; l < NB_L; l++){
-            if (grille[c][l] == 0){
+        printf("%d |", l+1);
+        for (c = 0; c < NB_C; c++){
+            if (grille[l][c] == 0){
                 printf(" .");
             }else{
-                printf(" %d",grille[c][l]);
+                printf(" %d",grille[l][c]);
             }
-            if ((l == 2) || (l == 5)){
+            if ((c == 2) || (c == 5)){
                 printf(" |");
             }
 
@@ -250,5 +250,7 @@ bool estPleine(tGrille grille){
             }
             c++;
         }
+        l++;
     }
+    return estPresent;
 }
